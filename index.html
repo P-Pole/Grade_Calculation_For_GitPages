@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="index.css">
+    <title>Final Grade Calculator</title>
+    <script>
+        function calculateGrade() {
+            var UG_Project = parseFloat(document.getElementById('UG_Project').value);
+            var FL_Grades = document.getElementById('FL_Grades').value.split(",");
+            var S_GRADES = document.getElementById('S_GRADES').value.split(",");
+    
+            FL_Grades.sort(function(a, b) { return a - b; });
+            S_GRADES.sort(function(a, b) { return a - b; });
+    
+            var Calculation_One = UG_Project * 0.66666 + parseFloat(FL_Grades[0]) * 0.33333;
+            var Calculation_Two = (UG_Project * 0.66666 + parseFloat(FL_Grades[1]) * 0.33333) * 0.666 + (parseFloat(S_GRADES[0]) * 0.333 + parseFloat(S_GRADES[1]) * 0.333 + parseFloat(S_GRADES[2]) * 0.33333) * 0.333;
+    
+            var finalGrade = Math.max(Calculation_One, Calculation_Two);
+    
+            document.getElementById('result').innerHTML = "Your final grade is: " + finalGrade;
+        }
+    </script>
+    
+</head>
+<body>
+    <div class="background">
+        <div class="main-content">
+            <h1>Final Grade Calculator</h1>
+            <label for="UG_Project">UG Project Grade:</label>
+            <input type="text" name="UG_Project" id="UG_Project" required>
+            <br>
+            <label for="FL_Grades">Final Year Grades (comma-separated):</label>
+            <input type="text" name="FL_Grades" id="FL_Grades" required>
+            <br>
+            <label for="S_GRADES">Second Year Grades (comma-separated):</label>
+            <input type="text" name="S_GRADES" id="S_GRADES" required>
+            <br>
+            <button onclick="calculateGrade()">Calculate</button>
+            <p id="result"></p>
+        </div>
+    </div>
+</body>
+</html>
